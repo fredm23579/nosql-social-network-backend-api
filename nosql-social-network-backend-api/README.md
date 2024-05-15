@@ -10,6 +10,49 @@ This is the backend API for a social network application built using Node.js, Ex
 - Add and remove reactions to thoughts
 - Add and remove friends from a user's friend list
 
+## Directory Structure
+
+```bash
+
+nosql-social-network-backend-api/
+├── config/
+│   ├── db.js
+│   └── index.js
+├── controllers/
+│   ├── authController.js
+│   ├── friendController.js
+│   ├── thoughtController.js
+│   ├── userController.js
+│   └── index.js
+├── middleware/
+│   ├── authMiddleware.js
+│   └── errorMiddleware.js
+├── models/
+│   ├── Reaction.js
+│   ├── Thought.js
+│   ├── User.js
+│   └── index.js
+├── routes/
+│   ├── authRoutes.js
+│   ├── friendRoutes.js
+│   ├── thoughtRoutes.js
+│   ├── userRoutes.js
+│   └── index.js
+├── test/
+│   ├── apitest.js
+│   ├── userTests.js
+│   └── thoughtTests.js
+├── utils/
+│   └── dateFormat.js
+├── .env
+├── .gitignore
+├── app.js
+├── package.json
+├── README.md
+├── server.js
+
+```
+
 ## Technologies Used
 
 - Node.js
