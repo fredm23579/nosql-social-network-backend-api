@@ -38,6 +38,10 @@ nosql-social-network-backend-api/
 │   ├── thoughtRoutes.js
 │   ├── userRoutes.js
 │   └── index.js
+├── test/
+│   ├── apitest.js
+│   ├── userTests.js
+│   └── thoughtTests.js
 ├── utils/
 │   └── dateFormat.js
 ├── .env
