@@ -2,7 +2,7 @@
   "name": "nosql-social-network-backend-api",
   "version": "1.0.0",
   "description": "Backend API for a social network application built using Node.js, Express.js, and MongoDB",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
@@ -18,12 +18,13 @@
   "author": "Fred Motta",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-validation": "^3.0.8",
+    "faker": "^5.5.3",
     "helmet": "^7.0.0",
     "http-status": "^1.5.0",
     "joi": "^17.4.0",
@@ -37,7 +38,6 @@
     "eslint": "^7.24.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "faker": "^5.5.3",
     "mocha": "^10.4.0",
     "nodemon": "^3.1.0"
   },
@@ -45,8 +45,11 @@
     "nodejs",
     "express",
     "mongodb",
+    "mongoose",
+    "jwt",
+    "authentication",
+    "rest-api",
     "social-network",
-    "api",
     "backend"
   ]
 }
