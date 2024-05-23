@@ -6,45 +6,46 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    trim: true,
+    trim: true
   },
   email: {
     type: String,
     required: true,
     unique: true,
-    match: [/.+@.+\..+/, 'Please enter a valid email address'],
+    match: [/.+@.+\..+/, 'Must match an email format']
   },
   password: {
     type: String,
     required: true,
+    minlength: 6
   },
   thoughts: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Thought',
-    },
+      ref: 'Thought'
+    }
   ],
   friends: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-    },
-  ],
-}, { toJSON: { virtuals: true } });
+      ref: 'User'
+    }
+  ]
+});
 
-UserSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
+UserSchema.pre('save', async function(next) {
+  if (!this.isModified('password')) {
+    return next();
+  }
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 
-UserSchema.methods.comparePassword = async function (password) {
-  return await bcrypt.compare(password, this.password);
+UserSchema.methods.matchPassword = async function(enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
 };
 
-UserSchema.virtual('friendCount').get(function () {
-  return this.friends.length;
-});
+const User = mongoose.model('User', UserSchema);
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = User;
