@@ -1,84 +1,58 @@
 const User = require('../models/User');
 
-// Get all users
-exports.getAllUsers = async (req, res) => {
+exports.getUsers = async (req, res) => {
   try {
-    const users = await User.find().populate('thoughts').populate('friends');
+    const users = await User.find().select('-__v');
     res.json(users);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(500).json({ error: 'Failed to fetch users' });
   }
 };
 
-// Get user by ID
 exports.getUserById = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id).populate('thoughts').populate('friends');
+    const user = await User.findById(req.params.userId).select('-__v');
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
     res.json(user);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(500).json({ error: 'Failed to fetch user' });
   }
 };
 
-// Create user
 exports.createUser = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-
-    let user = await User.findOne({ email });
-    if (user) {
-      return res.status(400).json({ error: 'User already exists' });
-    }
-
-    user = new User({
-      username,
-      email,
-      password
-    });
-
-    await user.save();
+    const user = await User.create(req.body);
     res.status(201).json(user);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(400).json({ error: 'Failed to create user' });
   }
 };
 
-// Update user
 exports.updateUser = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true, runValidators: true }
-    );
-
+    const user = await User.findByIdAndUpdate(req.params.userId, req.body, {
+      new: true,
+      runValidators: true
+    }).select('-__v');
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
-
     res.json(user);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(400).json({ error: 'Failed to update user' });
   }
 };
 
-// Delete user
 exports.deleteUser = async (req, res) => {
   try {
-    const user = await User.findByIdAndDelete(req.params.id);
+    const user = await User.findByIdAndDelete(req.params.userId);
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
-    res.json({ msg: 'User removed' });
+    res.json({ message: 'User deleted' });
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(500).json({ error: 'Failed to delete user' });
   }
 };
