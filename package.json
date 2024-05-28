@@ -2,7 +2,7 @@
   "name": "nosql-social-network-backend-api",
   "version": "1.0.0",
   "description": "Backend API for a social network application built using Node.js, Express.js, and MongoDB",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
@@ -24,12 +24,10 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-validation": "^3.0.8",
-    "faker": "^5.5.3",
     "helmet": "^7.0.0",
     "http-status": "^1.5.0",
     "joi": "^17.4.0",
-    "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.0.3",
+    "mongoose": "^6.3.3",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
@@ -38,16 +36,14 @@
     "eslint": "^7.24.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "mocha": "^10.4.0",
-    "nodemon": "^3.1.0"
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.22"
   },
   "keywords": [
     "nodejs",
     "express",
     "mongodb",
     "mongoose",
-    "jwt",
-    "authentication",
     "rest-api",
     "social-network",
     "backend"
