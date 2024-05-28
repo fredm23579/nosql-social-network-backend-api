@@ -34,8 +34,15 @@ This is the backend API for a social network application built using Node.js, Ex
 - Node.js
 - Express.js
 - MongoDB with Mongoose
-- JSON Web Tokens (JWT) for authentication
 - Bcrypt for password hashing
+
+## Demo Link
+
+![Demo](https://drive.google.com/file/d/1Yt7dCbCoSwGYT1H1gNbMIVCWCOM5BH53/view?usp=sharing)
+
+## GitHub Repo Link
+
+![Repo Link](https://github.com/fredm23579/nosql-social-network-backend-api)
 
 ## Installation
 
@@ -58,11 +65,10 @@ Create a `.env` file in the root directory and provide the following variables:
 
 ```
 MONGODB_URI=<your-mongodb-connection-url>
-JWT_SECRET=<your-jwt-secret>
 PORT=<port-number>
 ```
 
-Replace `<your-mongodb-connection-url>`, `<your-jwt-secret>`, and `<port-number>` with your actual values.
+Replace `<your-mongodb-connection-url>`, and `<port-number>` with your actual values.
 
 ### Start the server
 
@@ -76,41 +82,9 @@ The server will start running at `http://localhost:<port-number>`.
 
 You can use tools like Insomnia or Postman to test the API endpoints.
 
-### Register a new user
-
-Send a POST request to `/api/auth/register` with the following JSON body:
-
-```json
-{
-  "username": "johndoe",
-  "email": "johndoe@example.com",
-  "password": "password123"
-}
-```
-
-### Log in with the registered user
-
-Send a POST request to `/api/auth/login` with the following JSON body:
-
-```json
-{
-  "email": "johndoe@example.com",
-  "password": "password123"
-}
-```
-
-The response will include a JWT token that you can use for authenticated requests.
-
-Use the obtained JWT token in the `Authorization` header for subsequent requests that require authentication.
-
 Explore the available API endpoints to interact with users, thoughts, reactions, and friends.
 
 ## API Endpoints
-
-### Auth Routes
-
-- `POST /api/auth/register`: Register a new user
-- `POST /api/auth/login`: Log in with a user
 
 ### User Routes
 
@@ -168,20 +142,18 @@ nosql-social-network-backend-api/
 │   ├── db.js
 │   └── index.js
 ├── controllers/
-│   ├── authController.js
 │   ├── friendController.js
 │   ├── thoughtController.js
 │   ├── userController.js
 │   └── index.js
 ├── middleware/
-│   ├── authMiddleware.js
+│   ├── errorMiddleware.js
 ├── models/
 │   ├── Reaction.js
 │   ├── Thought.js
 │   ├── User.js
 │   └── index.js
 ├── routes/
-│   ├── authRoutes.js
 │   ├── friendRoutes.js
 │   ├── thoughtRoutes.js
 │   ├── userRoutes.js
@@ -193,7 +165,6 @@ nosql-social-network-backend-api/
 ├── app.js
 ├── package.json
 ├── README.md
-├── server.js
 ```
 
 ## Contributing
